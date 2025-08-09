@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- add icon link -->
     <link rel="icon" href="image/favicon.png"
         type="image/x-icon" />
-    <title>Mind Map</title>
+    <title>Learner Success Factors Mind Map</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -221,162 +220,26 @@
             text-align: center;
         }
         
-        /* Mobile-first responsive design */
         @media (max-width: 768px) {
-            body {
-                padding: 10px;
-            }
-            
-            .container {
-                padding: 15px;
-            }
-            
-            .header h1 {
-                font-size: 2em;
-            }
-            
             .mindmap {
-                height: 500px;
-                position: relative;
-                overflow-x: auto;
-                overflow-y: auto;
+                height: 600px;
             }
-            
             .central-node {
-                width: 120px;
-                height: 120px;
-                font-size: 14px;
-                top: 50%;
-                left: 50%;
+                width: 150px;
+                height: 150px;
+                font-size: 16px;
             }
-            
             .main-node {
-                width: 100px;
-                height: 50px;
-                font-size: 11px;
-                padding: 0 8px;
-            }
-            
-            .sub-node {
-                width: 90px;
-                height: 30px;
-                font-size: 9px;
-                padding: 0 5px;
-                margin: 2px 0;
-            }
-            
-            /* Reposition branches for mobile */
-            .branch-1 { top: 10%; left: 55%; }
-            .branch-2 { top: 25%; right: 5%; }
-            .branch-3 { bottom: 25%; right: 5%; }
-            .branch-4 { bottom: 10%; left: 55%; }
-            .branch-5 { bottom: 10%; right: 55%; }
-            .branch-6 { top: 10%; right: 55%; }
-            .branch-7 { top: 25%; left: 5%; }
-            .branch-8 { bottom: 25%; left: 5%; }
-            
-            /* Shorter branch lines for mobile */
-            .line-1, .line-2, .line-3, .line-4, 
-            .line-5, .line-6, .line-7, .line-8 {
-                width: 80px;
-            }
-            
-            /* Mobile-specific sub-node positioning */
-            .branch-1 .sub-nodes { left: 120px; top: -70px; }
-            .branch-2 .sub-nodes { left: 120px; top: -60px; }
-            .branch-3 .sub-nodes { left: 120px; top: -50px; }
-            .branch-4 .sub-nodes { right: 120px; top: -50px; }
-            .branch-5 .sub-nodes { right: 120px; top: -60px; }
-            .branch-6 .sub-nodes { right: 120px; top: -70px; }
-            .branch-7 .sub-nodes { left: 120px; top: -50px; }
-            .branch-8 .sub-nodes { left: 120px; top: -60px; }
-            
-            .key-insights {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
-            
-            .insight-card {
-                padding: 15px;
-            }
-            
-            .insight-card h3 {
-                font-size: 1.1em;
-            }
-            
-            .explanation {
-                padding: 20px;
-            }
-            
-            .explanation h2 {
-                font-size: 1.5em;
-            }
-            
-            /* Touch-friendly interactions */
-            .main-node, .sub-node {
-                cursor: pointer;
-                -webkit-tap-highlight-color: transparent;
-            }
-            
-            /* Always show sub-nodes on mobile for better accessibility */
-            .sub-nodes {
-                opacity: 0.7;
-                pointer-events: auto;
-                transform: scale(0.9);
-                transition: all 0.3s ease;
-            }
-            
-            .main-node:hover + .sub-nodes,
-            .sub-nodes:hover,
-            .main-node:focus + .sub-nodes,
-            .main-node.active + .sub-nodes {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .central-node {
-                width: 100px;
-                height: 100px;
+                width: 120px;
+                height: 60px;
                 font-size: 12px;
             }
-            
-            .main-node {
-                width: 85px;
-                height: 45px;
+            .sub-node {
+                width: 100px;
+                height: 35px;
                 font-size: 10px;
             }
-            
-            .sub-node {
-                
-                font-size: 1.2em;
-                margin-top: 10px;
-                font-style: italic;
-            }
-            
-            .mindmap {
-                height: 450px;
-            }
-            
-            /* Even shorter lines for very small screens */
-            .line-1, .line-2, .line-3, .line-4, 
-            .line-5, .line-6, .line-7, .line-8 {
-                width: 60px;
-            }
-            
-            .branch-1 .sub-nodes, .branch-2 .sub-nodes, 
-            .branch-3 .sub-nodes, .branch-7 .sub-nodes, 
-            .branch-8 .sub-nodes { left: 100px; }
-            
-            .branch-4 .sub-nodes, .branch-5 .sub-nodes, 
-            .branch-6 .sub-nodes { right: 100px; }
         }
-        
-        a:hover {
-            background: rgba(52, 152, 219, 0.4);
-        }
-
     </style>
 </head>
 <body>
@@ -615,60 +478,6 @@
             setTimeout(() => {
                 centralNode.style.animation = '';
             }, 1000);
-        });
-        
-        // Mobile touch interactions
-        let touchTimeout;
-        mainNodes.forEach(node => {
-            // Handle touch events for mobile
-            node.addEventListener('touchstart', (e) => {
-                e.preventDefault();
-                node.classList.add('active');
-                
-                // Clear any existing timeout
-                clearTimeout(touchTimeout);
-                
-                // Set timeout to remove active class
-                touchTimeout = setTimeout(() => {
-                    node.classList.remove('active');
-                }, 3000);
-            });
-            
-            node.addEventListener('click', (e) => {
-                e.preventDefault();
-                node.classList.toggle('active');
-                
-                // Remove active class from other nodes
-                mainNodes.forEach(otherNode => {
-                    if (otherNode !== node) {
-                        otherNode.classList.remove('active');
-                    }
-                });
-            });
-        });
-        
-        // Add swipe detection for mobile navigation
-        let startY = 0;
-        let startX = 0;
-        
-        const mindmapElement = document.getElementById('mindmap');
-        
-        mindmapElement.addEventListener('touchstart', (e) => {
-            startY = e.touches[0].clientY;
-            startX = e.touches[0].clientX;
-        });
-        
-        mindmapElement.addEventListener('touchmove', (e) => {
-            // Allow natural scrolling
-            const currentY = e.touches[0].clientY;
-            const currentX = e.touches[0].clientX;
-            const diffY = startY - currentY;
-            const diffX = startX - currentX;
-            
-            // Prevent default only for horizontal swipes to allow vertical scrolling
-            if (Math.abs(diffX) > Math.abs(diffY)) {
-                e.preventDefault();
-            }
         });
         
         // Add pulse animation
